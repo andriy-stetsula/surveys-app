@@ -6,18 +6,25 @@ const questions = [
   { id: "q3", type: "rating", text: "Оцініть застосунок", required: true },
 ]
 
+const surveys = [
+  { id: "srv_1", title: "Відгук про застосунок", description: "Коротке опитування", status: "active", questions },
+  { id: "srv_2", title: "Чернетка", description: "Ще не опубліковано", status: "draft", questions },
+  { id: "srv_3", title: "Закрите опитування", description: "Більше не приймає відповіді", status: "closed", questions },
+]
+
 async function seed() {
    try {
-
-        await pool.query(
+    for (const s of surveys) {
+     await pool.query(
     `INSERT INTO surveys (id, title, description, status, questions)
      VALUES ($1, $2, $3, $4, $5)
      ON CONFLICT (id) DO NOTHING`,
-      ["srv_1", "Відгук про застосунок", "Коротке опитування", "active", JSON.stringify(questions)]
+      [s.id, s.title, s.description, s.status, JSON.stringify(s.questions)]
 );
+    }
 console.log("Seed done");
    } finally {
-console.log("Seed done");
+await pool.end();
    }
 
 
