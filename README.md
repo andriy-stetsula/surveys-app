@@ -34,4 +34,22 @@ npm run dev       # сервер на http://localhost:3000
 
 ## Mobile
 
-(буде додано)
+```bash
+cd mobile
+npm install
+```
+
+У `mobile/src/api.ts` постав адресу бекенду:
+
+- телефон (Expo Go): `http://<IP твого комп'ютера>:3000` (macOS: `ipconfig getifaddr en0`)
+- браузер: `http://localhost:3000`
+
+Запуск:
+
+```bash
+npx expo start
+```
+
+Далі скануй QR-код в Expo Go, натисни `i` для iOS-симулятора або `w` для браузера.
+
+Телефон і комп'ютер мають бути в одній Wi-Fi мережі. Бекенд має бути запущений.
