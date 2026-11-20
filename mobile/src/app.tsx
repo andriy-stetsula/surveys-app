@@ -1,8 +1,8 @@
 import { useState } from "./react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SurveyList from "./src/SurveyList";
-import { View, Text, TouchableOpacity } from "react-native";
 import { Survey } from "./src/api";
+import { View, Text, TouchableOpacity } from "react-native";
 
 const queryClient = new QueryClient();
 
