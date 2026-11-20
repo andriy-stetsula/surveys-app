@@ -33,29 +33,35 @@ export default function SurveyList({ onFill, onResults }: Props) {
       </View>
     );
 
-  if (!data.length) {
-    <View style={style.center}>
-      <Text>Немає активних опитувань</Text>
-    </View>;
-  }
+  if (!data?.length)
+    return (
+      <View style={style.center}>
+        <Text>Немає активних опитувань</Text>
+      </View>
+    );
 
   return (
     <FlatList
-      style={{ marginTop: 60 }}
+      style={style.list}
       data={data}
       keyExtractor={(item: Survey) => item.id}
       renderItem={({ item }) => (
         <View style={style.card}>
           <Text style={style.title}>{item.title}</Text>
-          <Text>{item.description}</Text>
-          <TouchableOpacity onPress={() => onFill(item)}>
-            <Text style={style.link}>Пройти</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => onResults(item)}>
-            <Text style={style.link}>Результати</Text>
-          </TouchableOpacity>
+          <Text style={style.description}>{item.description}</Text>
+          <View style={style.actions}>
+            <TouchableOpacity style={style.button} onPress={() => onFill(item)}>
+              <Text style={style.buttonText}>Пройти</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={style.buttonOutline}
+              onPress={() => onResults(item)}
+            >
+              <Text style={style.buttonOutlineText}>Результати</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
-    ></FlatList>
+    />
   );
 }
